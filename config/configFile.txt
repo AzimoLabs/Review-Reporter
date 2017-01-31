@@ -1,0 +1,22 @@
+// this file can be moved out of project
+// be sure to add absolute paths
+
+application_name application-name-on-google-play
+android_package_name application-package
+
+google_play_service_credentials_path ~/<credentials_dir>/credentialsGoogle.p12
+google_play_service_account_email service-account
+google_dev_console_acc google-dev-console-acc-to-access-review-replies
+
+jira_auth_credentials credentials
+jira_basepath base-path-to-your-jira-ended-with-slash
+jira_project_name project-name
+jira_issue_type issue-type
+jira_assignee assignee-account-name
+report_to_jira_scan_interval_millis scan-and-create-issues-interval
+
+firebase_auth_credentials_path ~/<credentials_dir>/credentialsFirebase.json
+firebase_basepath firebase-project-base-path
+
+slack_web_hook slack-web-hook
+report_to_slack_scan_interval_millis report-to-slack-interval

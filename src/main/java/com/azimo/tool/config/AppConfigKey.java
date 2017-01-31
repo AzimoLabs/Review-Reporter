@@ -1,0 +1,32 @@
+package com.azimo.tool.config;
+
+/**
+ * Created by F1sherKK on 19/01/17.
+ */
+public enum AppConfigKey {
+
+    APPLICATION_NAME,
+    ANDROID_PACKAGE_NAME,
+
+    GOOGLE_PLAY_SERVICE_CREDENTIALS_PATH,
+    GOOGLE_PLAY_SERVICE_ACCOUNT_EMAIL,
+    GOOGLE_DEV_CONSOLE_ACC,
+
+    JIRA_AUTH_CREDENTIALS,
+    JIRA_BASEPATH,
+    JIRA_PROJECT_NAME,
+    JIRA_ISSUE_TYPE,
+    JIRA_ASSIGNEE,
+    REPORT_TO_JIRA_SCAN_INTERVAL_MILLIS,
+
+    FIREBASE_AUTH_CREDENTIALS_PATH,
+    FIREBASE_BASEPATH,
+
+    SLACK_WEB_HOOK,
+    REPORT_TO_SLACK_SCAN_INTERVAL_MILLIS;
+
+
+    public String toLabel() {
+        return toString().toLowerCase();
+    }
+}

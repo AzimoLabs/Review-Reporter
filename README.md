@@ -1,9 +1,11 @@
 # Review Reporter
 
+<center><img src="https://cdn-images-1.medium.com/max/720/1*YsnzNla1yxNoPV5cwIsbiw.png"></center>
+
 Review Reporter is a bot assistant that improves our interaction with users of Android applications.
 It integrates Google Play, Slack, Jira and Firebase services together. 
 
-Review-Reporter performs in fixed interval ongoing actions:
+Review Reporter performs in fixed interval ongoing actions:
 
 1. Scans Google Play Store and fetches most recent reviews of your user concerning
 your project.
@@ -36,7 +38,7 @@ Slack messages.
 
 That's why this repo is only inspirational. So you can see how everything is connected together.
 Furthermore we have created series of posts which will help you to connect with each
-service separately, create your own Review-Reporter and adjust it to your needs.
+service separately, create your own Review Reporter and adjust it to your needs.
 
 If you really want to use our version, then we have provided you with setup instructions. Feel
 free to contact us if you don't understand something or you would like to give it a try but project 
@@ -44,7 +46,8 @@ would need some changes on our side.
 
 ## Setup
 
-All you need to do in order to make Review-Reporter works for you is to fill
+##### Config
+All you need to do in order to make Review Reporter works for you is to fill
 config file with proper values of your project.
 
 ```css
@@ -82,9 +85,41 @@ No one wants to keep credentials and keys, secrets in your project repository ri
 edit path to *.txt file in [config.properties](https://github.com/AzimoLabs/Review-Reporter/blob/master/config.properties).
 Remember to use absolute paths (with ~).
 
+##### Generating *.jar file
+Project is built with gradle. 
+
+1. Navigate to root of the project in your terminal/console.
+2. Generate *.jar files by using `./gradlew shadowJar` command.
+3. Your *.jar files will be created in `<project_root>/build/libs` location.
+4. Use *.jar which has "assembly" in it's name e.g `review-reporter-2.6-assembly.jar`. 
+
+##### Launching Review Reporter
+Make sure your `config.properties` file which is pointing at your config file is in the same location
+as jar file.
+
+To launch Review Reporter use following command:
+
+`java -jar JAR_NAME LAUNCHER_CLASS RUN_VARIANT` 
+
+Where: 
+
+ - <b>JAR_NAME</b>: depending on generated Review-Reported versions you might end up with various names. 
+In example `review-reporter-2.6-assembly.jar`.
+
+ - <b>LAUNCHER_CLASS</b>:: this value is always the same, it points to class which is launcher class of whole project. In our case
+ use `com.azimo.tool.ReviewReporterService`
+ 
+ - <b>RUN_VARIANT</b>: two values available - `loopRun`, `singleRun`. We allow to run Review Reporter as task running in infinite loop (until stopped by user),
+ or once per invocation (in case you wanted to loop it by yourself e.g in Jenkins by using crone).  
+
+##### Example of assembled run commands
+
+ - `java -jar review-reporter-2.6-assembly.jar com.azimo.tool.ReviewReporterService singleRun` 
+ - `java -jar review-reporter-2.6-assembly.jar com.azimo.tool.ReviewReporterService loopRun` 
+
 ## License
 
-    Copyright (C) 2016 Azimo
+    Copyright (C) 2017 Azimo
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

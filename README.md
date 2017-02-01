@@ -105,7 +105,7 @@ To launch Review Reporter use following command:
 
 Where: 
 
- - <b>JAR_NAME</b>: depending on generated Review-Reported versions you might end up with various names. 
+ - <b>JAR_NAME</b>: depending on which version of Review-Reporter you have built, you might end up with various names. 
 In example `review-reporter-2.6-assembly.jar`.
 
  - <b>LAUNCHER_CLASS</b>:: this value is always the same, it points to class which is launcher class of whole project. In our case use `com.azimo.tool.ReviewReporterService`.

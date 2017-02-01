@@ -108,8 +108,7 @@ Where:
  - <b>JAR_NAME</b>: depending on generated Review-Reported versions you might end up with various names. 
 In example `review-reporter-2.6-assembly.jar`.
 
- - <b>LAUNCHER_CLASS</b>:: this value is always the same, it points to class which is launcher class of whole project. In our case
- use `com.azimo.tool.ReviewReporterService`
+ - <b>LAUNCHER_CLASS</b>:: this value is always the same, it points to class which is launcher class of whole project. In our case use `com.azimo.tool.ReviewReporterService`.
  
  - <b>RUN_VARIANT</b>: two values available - `loopRun`, `singleRun`. We allow to run Review Reporter as task running in infinite loop (until stopped by user),
  or once per invocation (in case you wanted to loop it by yourself e.g in Jenkins by using crone).  

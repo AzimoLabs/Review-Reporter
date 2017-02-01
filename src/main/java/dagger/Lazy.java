@@ -20,7 +20,7 @@ package dagger;
  * A handle to a lazily-computed value. Each {@code Lazy} computes its value on
  * the first call to {@code get()} and remembers that same value for all
  * subsequent calls to {@code get()}.
- *
+ * <p>
  * <h2>Example</h2>
  * The differences between <strong>direct injection</strong>, <strong>provider
  * injection</strong> and <strong>lazy injection</strong> are best demonstrated
@@ -29,19 +29,19 @@ package dagger;
  *   {@literal @Module}
  *   final class CounterModule {
  *     int next = 100;
- *
+ * <p>
  *     {@literal @Provides} Integer provideInteger() {
  *       System.out.println("computing...");
  *       return next++;
  *     }
  *   }
  * </code></pre>
- *
+ * <p>
  * <h3>Direct Injection</h3>
  * This class injects that integer and prints it 3 times:<pre><code>
  *   final class DirectCounter {
  *     {@literal @Inject} Integer value;
- *
+ * <p>
  *     void print() {
  *       System.out.println("printing...");
  *       System.out.println(value);
@@ -58,7 +58,7 @@ package dagger;
  *   100
  *   100
  * </code></pre>
- *
+ * <p>
  * <h3>Provider Injection</h3>
  * This class injects a {@linkplain javax.inject.Provider provider} for the
  * integer. It calls {@code Provider.get()} 3 times and prints each result:
@@ -84,13 +84,13 @@ package dagger;
  *   computing...
  *   102
  * </code></pre>
- *
+ * <p>
  * <h3>Lazy Injection</h3>
  * This class injects a {@code Lazy} for the integer. Like the provider above,
  * it calls {@code Lazy.get()} 3 times and prints each result:<pre><code>
  *   final class LazyCounter {
  *     {@literal @Inject Lazy<Integer> lazy;}
- *
+ * <p>
  *     void print() {
  *       System.out.println("printing...");
  *       System.out.println(lazy.get());
@@ -108,7 +108,7 @@ package dagger;
  *   100
  *   100
  * </code></pre>
- *
+ * <p>
  * <h3>Lazy != Singleton</h3>
  * Note that each injected {@code Lazy} is independent, and remembers its value
  * in isolation of other {@code Lazy} instances. In this example, two {@code
@@ -141,9 +141,9 @@ package dagger;
  * clients, and {@code Lazy} for lazy computation in a single client.
  */
 public interface Lazy<T> {
-  /**
-   * Return the underlying value, computing the value if necessary. All calls to
-   * the same {@code Lazy} instance will return the same result.
-   */
-  T get();
+    /**
+     * Return the underlying value, computing the value if necessary. All calls to
+     * the same {@code Lazy} instance will return the same result.
+     */
+    T get();
 }

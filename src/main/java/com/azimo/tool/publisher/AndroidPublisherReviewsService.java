@@ -8,7 +8,6 @@ import com.azimo.tool.publisher.model.AppReview;
 import com.google.api.services.androidpublisher.AndroidPublisher;
 import com.google.api.services.androidpublisher.model.ReviewsListResponse;
 
-import javax.inject.Inject;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,7 +22,6 @@ public class AndroidPublisherReviewsService {
     private ReviewMapper reviewMapper;
     private AppConfig appConfig;
 
-    @Inject
     public AndroidPublisherReviewsService(AndroidPublisher.Reviews reviews,
                                           ReviewMapper reviewMapper,
                                           AppConfig appConfig) {
@@ -36,9 +34,9 @@ public class AndroidPublisherReviewsService {
         ReviewCollection reviewCollection = new ReviewCollection();
 
         ReviewsListResponse response = reviews
-                .list(appConfig.get(AppConfigKey.ANDROID_PACKAGE_NAME))
-                .setMaxResults((long) maxResults)
-                .execute();
+            .list(appConfig.get(AppConfigKey.ANDROID_PACKAGE_NAME))
+            .setMaxResults((long) maxResults)
+            .execute();
 
         List<AppReview> appReviewList = reviewMapper.toAppReviewList(response.getReviews());
         reviewCollection.addAll(appReviewList);

@@ -16,10 +16,10 @@
 
 package dagger.internal;
 
-import static java.lang.annotation.RetentionPolicy.SOURCE;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
+
+import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
  * Signifies that a public API (public class, method or field) is subject to
@@ -31,4 +31,5 @@ import java.lang.annotation.Retention;
  */
 @Documented
 @Retention(SOURCE)
-public @interface Beta {}
+public @interface Beta {
+}

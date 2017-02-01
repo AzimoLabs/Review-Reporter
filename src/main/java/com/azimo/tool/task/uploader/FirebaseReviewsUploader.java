@@ -5,8 +5,6 @@ import com.azimo.tool.firebase.collection.ReportedReviewsCollection;
 import com.azimo.tool.firebase.response.DefaultFirebaseResponse;
 import com.azimo.tool.task.interfaces.Uploader;
 
-import javax.inject.Inject;
-
 /**
  * Created by F1sherKK on 27/01/17.
  */
@@ -14,7 +12,6 @@ public class FirebaseReviewsUploader implements Uploader<ReportedReviewsCollecti
 
     private FirebaseServiceManager firebaseServiceManager;
 
-    @Inject
     public FirebaseReviewsUploader(FirebaseServiceManager firebaseServiceManager) {
         this.firebaseServiceManager = firebaseServiceManager;
     }

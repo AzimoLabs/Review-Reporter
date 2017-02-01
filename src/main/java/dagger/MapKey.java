@@ -16,29 +16,30 @@
 
 package dagger;
 
-import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
 import dagger.internal.Beta;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 import java.util.Map;
 
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
 /**
  * Identifies annotation types that are used to associate keys with values returned by
  * {@linkplain Provides provider methods} in order to compose a {@linkplain
  * dagger.multibindings.IntoMap map}.
- *
+ * <p>
  * <p>Every provider method annotated with {@code @Provides} and {@code @IntoMap} must also have an
  * annotation that identifies the key for that map entry. That annotation's type must be annotated
  * with {@code @MapKey}.
- *
+ * <p>
  * <p>Typically, the key annotation has a single member, whose value is used as the map key.
- *
+ * <p>
  * <p>For example, to add an entry to a {@code Map<SomeEnum, Integer>} with key
  * {@code SomeEnum.FOO}, you could use an annotation called {@code @SomeEnumKey}:
- *
+ * <p>
  * <pre><code>
  * {@literal @}MapKey
  * {@literal @}interface SomeEnumKey {
@@ -62,18 +63,18 @@ import java.util.Map;
  *   }
  * }
  * </code></pre>
- *
+ * <p>
  * <p>If {@code unwrapValue} is true, the annotation's single member can be any type except an
  * array.
- * 
+ * <p>
  * <p>See {@link dagger.multibindings} for standard unwrapped map key annotations for keys that are
  * boxed primitives, strings, or classes.
- *
+ * <p>
  * <h2>Annotations as keys</h2>
- *
+ * <p>
  * <p>If {@link #unwrapValue} is false, then the annotation itself is used as the map key. For
  * example, to add an entry to a {@code Map<MyMapKey, Integer>} map:
- *
+ * <p>
  * <pre><code>
  * {@literal @}MapKey(unwrapValue = false)
  * {@literal @}interface MyMapKey {
@@ -98,23 +99,23 @@ import java.util.Map;
  *   }
  * }
  * </code></pre>
- *
+ * <p>
  * <p>(Note that there must be a class {@code MyMapKeyImpl} that implements {@code MyMapKey} in
  * order to call {@link Map#get(Object)} on the provided map.)
  *
  * @see <a href="http://google.github.io/dagger/multibindings#map-multibindings">Map
- *      multibinding</a>
+ * multibinding</a>
  */
 @Documented
 @Target(ANNOTATION_TYPE)
 @Retention(RUNTIME)
 @Beta
 public @interface MapKey {
-  /**
-   * True to use the value of the single member of the annotated annotation as the map key; false
-   * to use the annotation instance as the map key.
-   *
-   * <p>If true, the single member must not be an array.
-   */
-  boolean unwrapValue() default true;
+    /**
+     * True to use the value of the single member of the annotated annotation as the map key; false
+     * to use the annotation instance as the map key.
+     * <p>
+     * <p>If true, the single member must not be an array.
+     */
+    boolean unwrapValue() default true;
 }

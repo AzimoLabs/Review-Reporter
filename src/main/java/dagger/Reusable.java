@@ -16,16 +16,17 @@
 
 package dagger;
 
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
 import dagger.internal.Beta;
+
+import javax.inject.Scope;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
-import javax.inject.Scope;
+
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * A scope that indicates that the object returned by a binding may be (but might not be) reused.
- *
+ * <p>
  * <p>{@code @Reusable} is useful when you want to limit the number of provisions of a type, but
  * there is no specific lifetime over which there must be only one instance.
  *
@@ -35,4 +36,5 @@ import javax.inject.Scope;
 @Beta
 @Retention(RUNTIME)
 @Scope
-public @interface Reusable {}
+public @interface Reusable {
+}

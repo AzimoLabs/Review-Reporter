@@ -2,7 +2,6 @@ package com.azimo.tool.config.mapper;
 
 import com.azimo.tool.utils.file.FilePathParser;
 
-import javax.inject.Inject;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,7 +15,6 @@ public class ConfigFileReader {
 
     private FilePathParser filePathParser;
 
-    @Inject
     public ConfigFileReader(FilePathParser filePathParser) {
         this.filePathParser = filePathParser;
     }

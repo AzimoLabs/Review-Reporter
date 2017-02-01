@@ -2,7 +2,9 @@ package com.azimo.tool.jira.interceptor;
 
 import com.azimo.tool.config.AppConfig;
 import com.azimo.tool.config.AppConfigKey;
-import okhttp3.*;
+import okhttp3.Interceptor;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import java.io.IOException;
 

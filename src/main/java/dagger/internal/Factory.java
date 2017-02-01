@@ -17,6 +17,7 @@
 package dagger.internal;
 
 import dagger.Provides;
+
 import javax.inject.Inject;
 import javax.inject.Provider;
 import javax.inject.Scope;
@@ -26,7 +27,7 @@ import javax.inject.Scope;
  * scoping semantics while providing an instance, a factory implementation is guaranteed to exercise
  * the binding logic ({@link Inject} constructors, {@link Provides} methods) upon each call to
  * {@link #get}.
- *
+ * <p>
  * <p>Note that while subsequent calls to {@link #get} will create new instances for bindings such
  * as those created by {@link Inject} constructors, a new instance is not guaranteed by all
  * bindings. For example, {@link Provides} methods may be implemented in ways that return the same

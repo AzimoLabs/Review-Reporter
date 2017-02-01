@@ -16,21 +16,22 @@
 
 package dagger.multibindings;
 
-import static java.lang.annotation.ElementType.METHOD;
-
 import dagger.internal.Beta;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.Target;
 
+import static java.lang.annotation.ElementType.METHOD;
+
 /**
  * Annotates abstract module methods that declare multibindings.
- *
+ * <p>
  * <p>You can declare that a multibound set or map is bound by annotating an abstract module method
  * that returns the set or map you want to declare with {@code @Multibinds}.
- *
+ * <p>
  * <p>You do not have to use {@code @Multibinds} for sets or maps that have at least one
  * contribution, but you do have to declare them if they may be empty.
- *
+ * <p>
  * <pre><code>
  *   {@literal @Module} abstract class MyModule {
  *     {@literal @Multibinds Set<Foo> aSet();}
@@ -43,7 +44,7 @@ import java.lang.annotation.Target;
  *       return …
  *     }
  *   }</code></pre>
- *
+ * <p>
  * <p>A given set or map multibinding can be declared any number of times without error. Dagger
  * never implements calls any {@code @Multibinds} methods.
  *
@@ -52,4 +53,5 @@ import java.lang.annotation.Target;
 @Documented
 @Target(METHOD)
 @Beta
-public @interface Multibinds {}
+public @interface Multibinds {
+}

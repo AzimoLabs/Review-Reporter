@@ -21,24 +21,23 @@ package dagger;
  * presence or absence of an injectable constructor.
  *
  * @param <T> type to inject members of
- *
  * @author Bob Lee
  * @author Jesse Wilson
  * @since 2.0 (since 1.0 without the provision that {@link #injectMembers} cannot accept
- *      {@code null})
+ * {@code null})
  */
 public interface MembersInjector<T> {
 
-  /**
-   * Injects dependencies into the fields and methods of {@code instance}. Ignores the presence or
-   * absence of an injectable constructor.
-   *
-   * <p>Whenever the object graph creates an instance, it performs this injection automatically
-   * (after first performing constructor injection), so if you're able to let the object graph
-   * create all your objects for you, you'll never need to use this method.
-   *
-   * @param instance into which members are to be injected
-   * @throws NullPointerException if {@code instance} is {@code null}
-   */
-  void injectMembers(T instance);
+    /**
+     * Injects dependencies into the fields and methods of {@code instance}. Ignores the presence or
+     * absence of an injectable constructor.
+     * <p>
+     * <p>Whenever the object graph creates an instance, it performs this injection automatically
+     * (after first performing constructor injection), so if you're able to let the object graph
+     * create all your objects for you, you'll never need to use this method.
+     *
+     * @param instance into which members are to be injected
+     * @throws NullPointerException if {@code instance} is {@code null}
+     */
+    void injectMembers(T instance);
 }

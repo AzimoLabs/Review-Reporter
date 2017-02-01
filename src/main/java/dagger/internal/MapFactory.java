@@ -16,12 +16,12 @@
 
 package dagger.internal;
 
-import static dagger.internal.DaggerCollections.newLinkedHashMapWithExpectedSize;
-import static java.util.Collections.unmodifiableMap;
-
+import javax.inject.Provider;
 import java.util.Map;
 import java.util.Map.Entry;
-import javax.inject.Provider;
+
+import static dagger.internal.DaggerCollections.newLinkedHashMapWithExpectedSize;
+import static java.util.Collections.unmodifiableMap;
 
 /**
  * A {@link Factory} implementation used to implement {@link Map} bindings. This factory returns a
@@ -29,33 +29,32 @@ import javax.inject.Provider;
  *
  * @author Chenying Hou
  * @since 2.0
- *
  */
 public final class MapFactory<K, V> implements Factory<Map<K, V>> {
-  private final Map<K, Provider<V>> contributingMap;
+    private final Map<K, Provider<V>> contributingMap;
 
-  private MapFactory(Map<K, Provider<V>> map) {
-    this.contributingMap = unmodifiableMap(map);
-  }
-
-  /**
-   * Returns a new MapFactory.
-   */
-  public static <K, V> MapFactory<K, V> create(Provider<Map<K, Provider<V>>> mapProviderFactory) {
-    Map<K, Provider<V>> map = mapProviderFactory.get();
-    return new MapFactory<K, V>(map);
-  }
-
-  /**
-   * Returns a {@code Map<K, V>} whose iteration order is that of the elements
-   * given by each of the providers, which are invoked in the order given at creation.
-   */
-  @Override
-  public Map<K, V> get() {
-    Map<K, V> result = newLinkedHashMapWithExpectedSize(contributingMap.size());
-    for (Entry<K, Provider<V>> entry: contributingMap.entrySet()) {
-      result.put(entry.getKey(), entry.getValue().get());
+    private MapFactory(Map<K, Provider<V>> map) {
+        this.contributingMap = unmodifiableMap(map);
     }
-    return unmodifiableMap(result);
-  }
+
+    /**
+     * Returns a new MapFactory.
+     */
+    public static <K, V> MapFactory<K, V> create(Provider<Map<K, Provider<V>>> mapProviderFactory) {
+        Map<K, Provider<V>> map = mapProviderFactory.get();
+        return new MapFactory<K, V>(map);
+    }
+
+    /**
+     * Returns a {@code Map<K, V>} whose iteration order is that of the elements
+     * given by each of the providers, which are invoked in the order given at creation.
+     */
+    @Override
+    public Map<K, V> get() {
+        Map<K, V> result = newLinkedHashMapWithExpectedSize(contributingMap.size());
+        for (Entry<K, Provider<V>> entry : contributingMap.entrySet()) {
+            result.put(entry.getKey(), entry.getValue().get());
+        }
+        return unmodifiableMap(result);
+    }
 }

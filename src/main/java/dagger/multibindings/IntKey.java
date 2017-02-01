@@ -16,18 +16,21 @@
 
 package dagger.multibindings;
 
-import static java.lang.annotation.ElementType.METHOD;
-
 import dagger.MapKey;
 import dagger.internal.Beta;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.Target;
 
-/** A {@link MapKey} annotation for maps with {@code int} keys. */
+import static java.lang.annotation.ElementType.METHOD;
+
+/**
+ * A {@link MapKey} annotation for maps with {@code int} keys.
+ */
 @Beta
 @Documented
 @Target(METHOD)
 @MapKey
 public @interface IntKey {
-  int value();
+    int value();
 }

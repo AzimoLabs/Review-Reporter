@@ -7,8 +7,6 @@ import com.azimo.tool.slack.model.SlackMessage;
 import com.azimo.tool.utils.ColorFormatter;
 import com.google.api.services.androidpublisher.model.UserComment;
 
-import javax.inject.Inject;
-
 /**
  * Created by F1sherKK on 25/01/17.
  */
@@ -25,7 +23,6 @@ public class MessageConverter {
     private TimeConverter timeConverter;
     private ColorFormatter colorFormatter;
 
-    @Inject
     public MessageConverter(AppConfig config, TimeConverter timeConverter, ColorFormatter colorFormatter) {
         this.config = config;
         this.timeConverter = timeConverter;
@@ -108,7 +105,7 @@ public class MessageConverter {
     private String addStars(int starRatingVal) {
         final int maxStars = 5;
         final String slack_star_emoji = ":star:";
-        final String slack_small_square =":white_small_square:";
+        final String slack_small_square = ":white_small_square:";
         String starsString = "";
         for (int i = 0; i < starRatingVal; i++) {
             starsString += slack_star_emoji;

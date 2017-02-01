@@ -9,8 +9,6 @@ import com.azimo.tool.publisher.model.AppReview;
 import com.azimo.tool.task.interfaces.Uploader;
 import com.azimo.tool.utils.converter.IssueConverter;
 
-import javax.inject.Inject;
-
 /**
  * Created by F1sherKK on 27/01/17.
  */
@@ -19,7 +17,6 @@ public class JiraUploader implements Uploader<ReviewCollection, CreatedIssueColl
     private IssueConverter issueConverter;
     private JiraIssueServiceManager jiraIssueServiceManager;
 
-    @Inject
     public JiraUploader(IssueConverter issueConverter, JiraIssueServiceManager jiraIssueServiceManager) {
         this.issueConverter = issueConverter;
         this.jiraIssueServiceManager = jiraIssueServiceManager;
@@ -34,7 +31,8 @@ public class JiraUploader implements Uploader<ReviewCollection, CreatedIssueColl
                 jiraIssueServiceManager.createJiraIssue(issue);
                 CreatedIssue createdIssue = issueConverter.createdIssueFrom(review);
                 createdIssueCollection.add(createdIssue);
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
         }
         return createdIssueCollection;
     }

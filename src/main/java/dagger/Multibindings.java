@@ -16,22 +16,23 @@
 
 package dagger;
 
-import static java.lang.annotation.ElementType.TYPE;
-
 import dagger.internal.Beta;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.Target;
 
+import static java.lang.annotation.ElementType.TYPE;
+
 /**
  * Annotates interfaces that declare multibindings.
- *
+ * <p>
  * <p>You can declare that a multibound set or map is bound by nesting a
  * {@code @Multibindings}-annotated interface within a module, with methods that return the sets or
  * maps you want to declare.
- *
+ * <p>
  * <p>You do not have to use {@code @Multibindings} for sets or maps that have at least one
  * contribution, but you do have to declare them if they may be empty.
- *
+ * <p>
  * <pre><code>
  * {@literal @Module}
  * class MyModule {
@@ -50,7 +51,7 @@ import java.lang.annotation.Target;
  *   }
  * }
  * </code></pre>
- *
+ * <p>
  * <p>All methods on the interface and any supertypes (except for methods on {@link Object}) are
  * used to declare multibindings. The names of the interface and its methods are ignored. A given
  * set or map multibinding can be declared any number of times without error. Dagger never
@@ -61,4 +62,5 @@ import java.lang.annotation.Target;
 @Documented
 @Target(TYPE)
 @Beta
-public @interface Multibindings {}
+public @interface Multibindings {
+}

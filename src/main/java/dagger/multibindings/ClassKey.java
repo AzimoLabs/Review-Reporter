@@ -16,16 +16,17 @@
 
 package dagger.multibindings;
 
-import static java.lang.annotation.ElementType.METHOD;
-
 import dagger.MapKey;
 import dagger.internal.Beta;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.Target;
 
+import static java.lang.annotation.ElementType.METHOD;
+
 /**
  * A {@link MapKey} annotation for maps with {@code Class<?>} keys.
- * 
+ * <p>
  * <p>If your map's keys can be constrained, consider using a custom annotation instead, with a
  * member whose type is {@code Class<? extends Something>}.
  */
@@ -34,5 +35,5 @@ import java.lang.annotation.Target;
 @Target(METHOD)
 @MapKey
 public @interface ClassKey {
-  Class<?> value();
+    Class<?> value();
 }

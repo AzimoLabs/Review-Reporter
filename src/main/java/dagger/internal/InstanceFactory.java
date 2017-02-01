@@ -19,7 +19,7 @@ package dagger.internal;
 /**
  * A {@link Factory} implementation that returns a single instance for all invocations of
  * {@link #get}.
- *
+ * <p>
  * <p>Note that while this is a {@link Factory} implementation, and thus unscoped, each call to
  * {@link #get} will always return the same instance.  As such, any scoping applied to this factory
  * is redundant and unnecessary.  However, using this with {@link DoubleCheck#provider} is valid and
@@ -29,21 +29,21 @@ package dagger.internal;
  * @since 2.0
  */
 public final class InstanceFactory<T> implements Factory<T> {
-  public static <T> Factory<T> create(T instance) {
-    if (instance == null) {
-      throw new NullPointerException();
+    public static <T> Factory<T> create(T instance) {
+        if (instance == null) {
+            throw new NullPointerException();
+        }
+        return new InstanceFactory<T>(instance);
     }
-    return new InstanceFactory<T>(instance);
-  }
 
-  private final T instance;
+    private final T instance;
 
-  private InstanceFactory(T instance) {
-    this.instance = instance;
-  }
+    private InstanceFactory(T instance) {
+        this.instance = instance;
+    }
 
-  @Override
-  public T get() {
-    return instance;
-  }
+    @Override
+    public T get() {
+        return instance;
+    }
 }

@@ -16,10 +16,11 @@
 
 package dagger.internal;
 
-import static dagger.internal.Preconditions.checkNotNull;
-
 import dagger.MembersInjector;
+
 import javax.inject.Inject;
+
+import static dagger.internal.Preconditions.checkNotNull;
 
 /**
  * Basic {@link MembersInjector} implementations used by the framework.
@@ -28,47 +29,49 @@ import javax.inject.Inject;
  * @since 2.0
  */
 public final class MembersInjectors {
-  /**
-   * Injects members into {@code instance} using {@code membersInjector}.  This method is a
-   * convenience for cases in which you would want to chain members injection, but can't because
-   * {@link MembersInjector#injectMembers} returns {@code void}.
-   */
-  public static <T> T injectMembers(MembersInjector<T> membersInjector, T instance) {
-    membersInjector.injectMembers(instance);
-    return instance;
-  }
-
-  /**
-   * Returns a {@link MembersInjector} implementation that injects no members
-   *
-   * <p>Note that there is no verification that the type being injected does not have {@link Inject}
-   * members, so care should be taken to ensure appropriate use.
-   */
-  @SuppressWarnings("unchecked")
-  public static <T> MembersInjector<T> noOp() {
-    return (MembersInjector<T>) NoOpMembersInjector.INSTANCE;
-  }
-
-  private static enum NoOpMembersInjector implements MembersInjector<Object> {
-    INSTANCE;
-
-    @Override public void injectMembers(Object instance) {
-      checkNotNull(instance);
+    /**
+     * Injects members into {@code instance} using {@code membersInjector}.  This method is a
+     * convenience for cases in which you would want to chain members injection, but can't because
+     * {@link MembersInjector#injectMembers} returns {@code void}.
+     */
+    public static <T> T injectMembers(MembersInjector<T> membersInjector, T instance) {
+        membersInjector.injectMembers(instance);
+        return instance;
     }
-  }
 
-  /**
-   * Returns a {@link MembersInjector} that delegates to the {@link MembersInjector} of its
-   * supertype.  This is useful for cases where a type is known not to have its own {@link Inject}
-   * members, but must still inject members on its supertype(s).
-   *
-   * <p>Note that there is no verification that the type being injected does not have {@link Inject}
-   * members, so care should be taken to ensure appropriate use.
-   */
-  @SuppressWarnings("unchecked")
-  public static <T> MembersInjector<T> delegatingTo(MembersInjector<? super T> delegate) {
-    return (MembersInjector<T>) checkNotNull(delegate);
-  }
+    /**
+     * Returns a {@link MembersInjector} implementation that injects no members
+     * <p>
+     * <p>Note that there is no verification that the type being injected does not have {@link Inject}
+     * members, so care should be taken to ensure appropriate use.
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> MembersInjector<T> noOp() {
+        return (MembersInjector<T>) NoOpMembersInjector.INSTANCE;
+    }
 
-  private MembersInjectors() {}
+    private static enum NoOpMembersInjector implements MembersInjector<Object> {
+        INSTANCE;
+
+        @Override
+        public void injectMembers(Object instance) {
+            checkNotNull(instance);
+        }
+    }
+
+    /**
+     * Returns a {@link MembersInjector} that delegates to the {@link MembersInjector} of its
+     * supertype.  This is useful for cases where a type is known not to have its own {@link Inject}
+     * members, but must still inject members on its supertype(s).
+     * <p>
+     * <p>Note that there is no verification that the type being injected does not have {@link Inject}
+     * members, so care should be taken to ensure appropriate use.
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> MembersInjector<T> delegatingTo(MembersInjector<? super T> delegate) {
+        return (MembersInjector<T>) checkNotNull(delegate);
+    }
+
+    private MembersInjectors() {
+    }
 }

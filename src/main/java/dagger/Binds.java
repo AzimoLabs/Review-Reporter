@@ -16,22 +16,22 @@
 
 package dagger;
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Annotates <em>abstract</em> methods of a {@link Module} that delegate bindings. For example, to
  * bind {@link java.util.Random} to {@link java.security.SecureRandom} a module could declare the
  * following: {@code @Binds abstract Random bindRandom(SecureRandom secureRandom);}
- *
+ * <p>
  * <p>{@code @Binds} methods are a drop-in replacement for {@link Provides} methods that simply
  * return an injected parameter.  Prefer {@code @Binds} because the generated implementation is
  * likely to be more efficient.
- *
+ * <p>
  * <p>A {@code @Binds} method:
  * <ul>
  * <li>Must be {@code abstract}.
@@ -44,4 +44,5 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RUNTIME)
 @Target(METHOD)
-public @interface Binds {}
+public @interface Binds {
+}

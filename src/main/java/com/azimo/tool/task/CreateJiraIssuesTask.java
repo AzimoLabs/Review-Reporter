@@ -8,8 +8,6 @@ import com.azimo.tool.task.provider.UncreatedIssuesProvider;
 import com.azimo.tool.task.uploader.FirebaseIssuesUploader;
 import com.azimo.tool.task.uploader.JiraUploader;
 
-import javax.inject.Inject;
-
 /**
  * Created by F1sherKK on 25/01/17.
  */
@@ -22,7 +20,6 @@ public class CreateJiraIssuesTask extends ReviewReporterTask {
     private JiraUploader jiraUploader;
     private FirebaseIssuesUploader firebaseIssuesUploader;
 
-    @Inject
     public CreateJiraIssuesTask(UncreatedIssuesProvider uncreatedIssuesProvider,
                                 JiraUploader jiraUploader,
                                 FirebaseServiceManager firebaseServiceManager,

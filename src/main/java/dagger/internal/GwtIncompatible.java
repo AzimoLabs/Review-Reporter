@@ -16,5 +16,8 @@
 
 package dagger.internal;
 
-/** Marks an element incompatible with GWT. */
-public @interface GwtIncompatible {}
+/**
+ * Marks an element incompatible with GWT.
+ */
+public @interface GwtIncompatible {
+}

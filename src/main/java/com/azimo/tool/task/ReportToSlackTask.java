@@ -8,8 +8,6 @@ import com.azimo.tool.task.provider.UnreportedReviewsProvider;
 import com.azimo.tool.task.uploader.FirebaseReviewsUploader;
 import com.azimo.tool.task.uploader.SlackUploader;
 
-import javax.inject.Inject;
-
 /**
  * Created by F1sherKK on 25/01/17.
  */
@@ -21,8 +19,6 @@ public class ReportToSlackTask extends ReviewReporterTask {
     private SlackUploader slackUploader;
     private FirebaseReviewsUploader firebaseReviewsUploader;
 
-
-    @Inject
     public ReportToSlackTask(UnreportedReviewsProvider unreportedReviewsProvider,
                              SlackUploader slackUploader,
                              FirebaseServiceManager firebaseServiceManager,
@@ -36,7 +32,7 @@ public class ReportToSlackTask extends ReviewReporterTask {
     }
 
     @Override
-    public void run() throws  Exception {
+    public void run() throws Exception {
         attemptToSendReviewsToSlack();
     }
 

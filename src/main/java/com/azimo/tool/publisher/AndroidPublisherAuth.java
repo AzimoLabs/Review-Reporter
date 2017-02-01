@@ -38,7 +38,7 @@ public class AndroidPublisherAuth {
         try {
 
             if (HTTP_TRANSPORT == null) {
-                    HTTP_TRANSPORT = androidPublisherBuilder.newTrustedTransport();
+                HTTP_TRANSPORT = androidPublisherBuilder.newTrustedTransport();
             }
 
             if (JSON_FACTORY == null) {

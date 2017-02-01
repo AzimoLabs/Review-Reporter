@@ -8,7 +8,6 @@ import com.google.gson.Gson;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 
 import javax.inject.Named;
 import javax.inject.Singleton;

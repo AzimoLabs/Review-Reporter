@@ -7,8 +7,6 @@ import com.azimo.tool.publisher.collection.ReviewCollection;
 import com.azimo.tool.publisher.model.AppReview;
 import com.azimo.tool.task.interfaces.Provider;
 
-import javax.inject.Inject;
-
 
 /**
  * Created by F1sherKK on 27/01/17.
@@ -18,7 +16,6 @@ public class UnreportedReviewsProvider implements Provider<ReviewCollection> {
     private AndroidPublisherReviewsService publisherReviewsService;
     private FirebaseServiceManager firebaseIssueServiceManager;
 
-    @Inject
     public UnreportedReviewsProvider(AndroidPublisherReviewsService publisherReviewsService,
                                      FirebaseServiceManager firebaseIssueServiceManager) {
         this.publisherReviewsService = publisherReviewsService;

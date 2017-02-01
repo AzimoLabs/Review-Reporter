@@ -19,7 +19,7 @@
  * collection that can be injected without depending directly on each of the individual bindings.
  *
  * @see <a href="http://google.github.io/dagger/multibindings">Multibindings in the Dagger
- *      User's Guide</a>
+ * User's Guide</a>
  */
 
 package dagger.multibindings;

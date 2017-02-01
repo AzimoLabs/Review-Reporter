@@ -16,12 +16,12 @@
 
 package dagger;
 
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * A subcomponent that inherits the bindings from a parent {@link Component} or
@@ -35,21 +35,22 @@ import java.lang.annotation.Target;
 @Target(TYPE)
 @Documented
 public @interface Subcomponent {
-  /**
-   * A list of classes annotated with {@link Module} whose bindings are used to generate the
-   * subcomponent implementation.  Note that through the use of {@link Module#includes} the full set
-   * of modules used to implement the subcomponent may include more modules that just those listed
-   * here.
-   */
-  Class<?>[] modules() default {};
-  
-  /**
-   * A builder for a subcomponent.  This follows all the rules of {@link Component.Builder}, except
-   * it must appear in classes annotated with {@link Subcomponent} instead of {@code Component}.
-   * Components can have methods that return a {@link Subcomponent.Builder}-annotated type,
-   * allowing the user to set modules on the subcomponent using their defined API.
-   */
-  @Target(TYPE)
-  @Documented
-  @interface Builder {}
+    /**
+     * A list of classes annotated with {@link Module} whose bindings are used to generate the
+     * subcomponent implementation.  Note that through the use of {@link Module#includes} the full set
+     * of modules used to implement the subcomponent may include more modules that just those listed
+     * here.
+     */
+    Class<?>[] modules() default {};
+
+    /**
+     * A builder for a subcomponent.  This follows all the rules of {@link Component.Builder}, except
+     * it must appear in classes annotated with {@link Subcomponent} instead of {@code Component}.
+     * Components can have methods that return a {@link Subcomponent.Builder}-annotated type,
+     * allowing the user to set modules on the subcomponent using their defined API.
+     */
+    @Target(TYPE)
+    @Documented
+    @interface Builder {
+    }
 }

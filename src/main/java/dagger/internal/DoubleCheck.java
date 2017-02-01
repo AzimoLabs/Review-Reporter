@@ -16,76 +16,81 @@
 
 package dagger.internal;
 
-import static dagger.internal.Preconditions.checkNotNull;
-
 import dagger.Lazy;
+
 import javax.inject.Provider;
+
+import static dagger.internal.Preconditions.checkNotNull;
 
 /**
  * A {@link Lazy} and {@link Provider} implementation that memoizes the value returned from a
  * delegate using the double-check idiom described in Item 71 of <i>Effective Java 2</i>.
  */
 public final class DoubleCheck<T> implements Provider<T>, Lazy<T> {
-  private static final Object UNINITIALIZED = new Object();
+    private static final Object UNINITIALIZED = new Object();
 
-  private volatile Provider<T> provider;
-  private volatile Object instance = UNINITIALIZED;
+    private volatile Provider<T> provider;
+    private volatile Object instance = UNINITIALIZED;
 
-  private DoubleCheck(Provider<T> provider) {
-    assert provider != null;
-    this.provider = provider;
-  }
+    private DoubleCheck(Provider<T> provider) {
+        assert provider != null;
+        this.provider = provider;
+    }
 
-  @SuppressWarnings("unchecked") // cast only happens when result comes from the provider
-  @Override
-  public T get() {
-    Object result = instance;
-    if (result == UNINITIALIZED) {
-      synchronized (this) {
-        result = instance;
+    @SuppressWarnings("unchecked") // cast only happens when result comes from the provider
+    @Override
+    public T get() {
+        Object result = instance;
         if (result == UNINITIALIZED) {
-          result = provider.get();
+            synchronized (this) {
+                result = instance;
+                if (result == UNINITIALIZED) {
+                    result = provider.get();
           /* Get the current instance and test to see if the call to provider.get() has resulted
            * in a recursive call.  If it returns the same instance, we'll allow it, but if the
            * instances differ, throw. */
-          Object currentInstance = instance;
-          if (currentInstance != UNINITIALIZED && currentInstance != result) {
-            throw new IllegalStateException("Scoped provider was invoked recursively returning "
-                + "different results: " + currentInstance + " & " + result);
-          }
-          instance = result;
+                    Object currentInstance = instance;
+                    if (currentInstance != UNINITIALIZED && currentInstance != result) {
+                        throw new IllegalStateException("Scoped provider was invoked recursively returning "
+                            + "different results: " + currentInstance + " & " + result);
+                    }
+                    instance = result;
           /* Null out the reference to the provider. We are never going to need it again, so we
            * can make it eligible for GC. */
-          provider = null;
+                    provider = null;
+                }
+            }
         }
-      }
+        return (T) result;
     }
-    return (T) result;
-  }
 
-  /** Returns a {@link Provider} that caches the value from the given delegate provider. */
-  public static <T> Provider<T> provider(Provider<T> delegate) {
-    checkNotNull(delegate);
-    if (delegate instanceof DoubleCheck) {
+    /**
+     * Returns a {@link Provider} that caches the value from the given delegate provider.
+     */
+    public static <T> Provider<T> provider(Provider<T> delegate) {
+        checkNotNull(delegate);
+        if (delegate instanceof DoubleCheck) {
       /* This should be a rare case, but if we have a scoped @Binds that delegates to a scoped
        * binding, we shouldn't cache the value again. */
-      return delegate;
+            return delegate;
+        }
+        return new DoubleCheck<T>(delegate);
     }
-    return new DoubleCheck<T>(delegate);
-  }
 
-  /** Returns a {@link Lazy} that caches the value from the given provider. */
-  public static <T> Lazy<T> lazy(Provider<T> provider) {
-    if (provider instanceof Lazy) {
-      @SuppressWarnings("unchecked")
-      final Lazy<T> lazy = (Lazy<T>) provider;
-      // Avoids memoizing a value that is already memoized.
-      // NOTE: There is a pathological case where Provider<P> may implement Lazy<L>, but P and L
-      // are different types using covariant return on get(). Right now this is used with
-      // DoubleCheck<T> exclusively, which is implemented such that P and L are always
-      // the same, so it will be fine for that case.
-      return lazy;
+    /**
+     * Returns a {@link Lazy} that caches the value from the given provider.
+     */
+    public static <T> Lazy<T> lazy(Provider<T> provider) {
+        if (provider instanceof Lazy) {
+            @SuppressWarnings("unchecked")
+            final Lazy<T> lazy = (Lazy<T>) provider;
+            // Avoids memoizing a value that is already memoized.
+            // NOTE: There is a pathological case where Provider<P> may implement Lazy<L>, but P and L
+            // are different types using covariant return on get(). Right now this is used with
+            // DoubleCheck<T> exclusively, which is implemented such that P and L are always
+            // the same, so it will be fine for that case.
+            return lazy;
+        }
+        return new DoubleCheck<T>(checkNotNull(provider));
     }
-    return new DoubleCheck<T>(checkNotNull(provider));
-  }
 }

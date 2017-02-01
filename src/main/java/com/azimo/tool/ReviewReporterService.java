@@ -33,8 +33,8 @@ public class ReviewReporterService {
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(THREADS_AMOUNT);
 
     public static void main(String[] args) {
-       ReviewReporterService reviewReporterService = new ReviewReporterService();
-       reviewReporterService.init(args);
+        ReviewReporterService reviewReporterService = new ReviewReporterService();
+        reviewReporterService.init(args);
     }
 
     private ReviewReporterService() {
@@ -57,8 +57,9 @@ public class ReviewReporterService {
                 reportNewReviewsToSlackPeriodically();
                 break;
 
-            default: System.out.println(
-                "Unknown run variant. Please use: '" + RUN_VARIANT_LOOP + "','" + RUN_VARIANT_SINGLE + "'.");
+            default:
+                System.out.println(
+                    "Unknown run variant. Please use: '" + RUN_VARIANT_LOOP + "','" + RUN_VARIANT_SINGLE + "'.");
         }
     }
 

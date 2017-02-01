@@ -2,7 +2,6 @@ package com.azimo.tool.config;
 
 import com.azimo.tool.config.mapper.ConfigFileReader;
 
-import javax.inject.Inject;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,7 +17,6 @@ public class AppConfigLoader {
 
     private ConfigFileReader configFileReader;
 
-    @Inject
     public AppConfigLoader(ConfigFileReader configFileReader) {
         this.configFileReader = configFileReader;
     }

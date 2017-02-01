@@ -10,7 +10,6 @@ import com.azimo.tool.firebase.response.DefaultFirebaseResponse;
 import com.azimo.tool.firebase.response.GetCreatedIssuesResponse;
 import com.azimo.tool.firebase.response.GetReportedReviewsResponse;
 
-import javax.inject.Inject;
 import java.io.IOException;
 
 /**
@@ -22,7 +21,6 @@ public class FirebaseServiceManager {
     private final CreatedIssueMapper createdIssueMapper;
     private final ReportedReviewMapper reportedReviewMapper;
 
-    @Inject
     public FirebaseServiceManager(FirebaseService firebaseService,
                                   CreatedIssueMapper createdIssueMapper,
                                   ReportedReviewMapper reportedReviewMapper) {

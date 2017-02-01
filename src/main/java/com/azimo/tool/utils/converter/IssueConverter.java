@@ -1,17 +1,15 @@
 package com.azimo.tool.utils.converter;
 
+import com.azimo.tool.config.AppConfig;
 import com.azimo.tool.config.AppConfigKey;
 import com.azimo.tool.firebase.model.CreatedIssue;
+import com.azimo.tool.jira.model.Issue;
 import com.azimo.tool.publisher.collection.ReviewCollection;
 import com.azimo.tool.publisher.model.AppReview;
-import com.azimo.tool.config.AppConfig;
-import com.azimo.tool.jira.model.Issue;
 import com.google.api.services.androidpublisher.model.UserComment;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by F1sherKK on 11/01/17.
@@ -26,7 +24,6 @@ public class IssueConverter {
     private AppConfig config;
     private TimeConverter timeConverter;
 
-    @Inject
     public IssueConverter(AppConfig config, TimeConverter timeConverter) {
         this.config = config;
         this.timeConverter = timeConverter;
@@ -34,7 +31,7 @@ public class IssueConverter {
 
     public List<Issue> listFromReviewCollection(ReviewCollection reviewCollection) {
         List<Issue> issues = new ArrayList<>();
-        for (int i = 0; i < reviewCollection.size(); i ++) {
+        for (int i = 0; i < reviewCollection.size(); i++) {
             issues.add(issueFromAppReview(reviewCollection.get(i)));
         }
         return issues;

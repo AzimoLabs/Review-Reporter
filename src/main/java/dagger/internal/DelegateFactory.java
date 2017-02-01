@@ -20,28 +20,28 @@ import javax.inject.Provider;
 
 /**
  * A DelegateFactory that is used to stitch Provider/Lazy indirection based dependency cycles.
- * 
+ *
  * @since 2.0.1
  */
 public final class DelegateFactory<T> implements Factory<T> {
-  private Provider<T> delegate;
+    private Provider<T> delegate;
 
-  @Override
-  public T get() {
-    if (delegate == null) {
-      throw new IllegalStateException();
+    @Override
+    public T get() {
+        if (delegate == null) {
+            throw new IllegalStateException();
+        }
+        return delegate.get();
     }
-    return delegate.get();
-  }
 
-  public void setDelegatedProvider(Provider<T> delegate) {
-    if (delegate == null) {
-      throw new IllegalArgumentException();
+    public void setDelegatedProvider(Provider<T> delegate) {
+        if (delegate == null) {
+            throw new IllegalArgumentException();
+        }
+        if (this.delegate != null) {
+            throw new IllegalStateException();
+        }
+        this.delegate = delegate;
     }
-    if (this.delegate != null) {
-      throw new IllegalStateException();
-    }
-    this.delegate = delegate;
-  }
 }
 

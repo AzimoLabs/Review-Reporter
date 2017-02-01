@@ -10,18 +10,15 @@ import com.azimo.tool.task.interfaces.Uploader;
 import com.azimo.tool.utils.converter.MessageConverter;
 import com.azimo.tool.utils.converter.ReviewConverter;
 
-import javax.inject.Inject;
-
 /**
  * Created by F1sherKK on 27/01/17.
  */
-public class SlackUploader implements Uploader<ReviewCollection, ReportedReviewsCollection>{
+public class SlackUploader implements Uploader<ReviewCollection, ReportedReviewsCollection> {
 
     private MessageConverter messageConverter;
     private ReviewConverter reviewConverter;
     private SlackServiceManager slackServiceManager;
 
-    @Inject
     public SlackUploader(MessageConverter messageConverter,
                          ReviewConverter reviewConverter,
                          SlackServiceManager slackServiceManager) {

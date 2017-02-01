@@ -28,7 +28,7 @@ be omitted.
 
 ## Related articles
 
-  - Review-Reporter: Part 1 - Connecting to Google Play
+  - [Review-Reporter: Part 1 - Connecting to Google Play](https://medium.com/azimolabs/review-reporter-part-1-connecting-to-google-play-8abd37edc49f#.rx06kjmup)
 
 ## Purpose of this repository 
 
@@ -111,7 +111,7 @@ In example `review-reporter-2.6-assembly.jar`.
  - <b>LAUNCHER_CLASS</b>:: this value is always the same, it points to class which is launcher class of whole project. In our case use `com.azimo.tool.ReviewReporterService`.
  
  - <b>RUN_VARIANT</b>: two values available - `loopRun`, `singleRun`. We allow to run Review Reporter as task running in infinite loop (until stopped by user),
- or once per invocation (in case you wanted to loop it by yourself e.g in Jenkins by using crone).  
+ or once per invocation (in case you wanted to loop it by yourself e.g. in Jenkins by using crone).  
 
 ##### Example of assembled run commands
 

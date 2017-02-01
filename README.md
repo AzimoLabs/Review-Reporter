@@ -80,6 +80,7 @@ series.
 No one wants to keep credentials and keys, secrets in your project repository right? You can move 
 [config](https://github.com/AzimoLabs/Review-Reporter/tree/master/config) folder outside of project and 
 edit path to *.txt file in [config.properties](https://github.com/AzimoLabs/Review-Reporter/blob/master/config.properties).
+Remember to use absolute paths (with ~).
 
 ## License
 

@@ -1,6 +1,8 @@
 # Review Reporter
 
-<center><img src="https://cdn-images-1.medium.com/max/720/1*YsnzNla1yxNoPV5cwIsbiw.png"></center>
+<p align="center">
+  <img src="https://cdn-images-1.medium.com/max/720/1*YsnzNla1yxNoPV5cwIsbiw.png">
+</p>
 
 Review Reporter is a bot assistant that improves our interaction with users of Android applications.
 It integrates Google Play, Slack, Jira and Firebase services together. 
